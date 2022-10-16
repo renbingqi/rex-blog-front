@@ -15,6 +15,7 @@
           <li><a href="">首页</a></li>
           <li><a href="">首页</a></li>
           <li><a href="">首页</a></li>
+          <li></li>
         </ul>
       </div>
     </div>
@@ -42,7 +43,8 @@ export default {
 li{
   list-style: none;
   padding-top:10px;
-  /*padding-bottom:20px;*/
+  padding-bottom:10px;
+  cursor: pointer;
 }
 .auth{
   background-color: #262a30;
