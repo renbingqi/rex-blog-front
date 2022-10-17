@@ -1,22 +1,21 @@
 <template>
   <div class="sidebar">
-    <div class="menu">
+    <div>
       <div>
         <div class="auth">
           <div class="name"><span>Rex</span></div>
           <div class="name"><span>知行合一</span></div>
         </div>
-        <ul id="menu">
-          <li><a href="">
-            首页</a></li>
+        <div class="menu"><ul id="menu">
+          <li><a href="">首页</a></li>
+          <li><a href="">标签</a></li>
           <li><a href="">分类</a></li>
           <li><a href="">归档</a></li>
-          <li><a href="">首页</a></li>
-          <li><a href="">首页</a></li>
-          <li><a href="">首页</a></li>
-          <li><a href="">首页</a></li>
+          <li><a href="">友链</a></li>
+          <li><a href="">关于</a></li>
+          <li><a href="">搜索</a></li>
           <li></li>
-        </ul>
+        </ul></div>
       </div>
     </div>
     <div></div>
@@ -33,28 +32,32 @@ export default {
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 6%), 0 1px 5px 0 rgb(0 0 0 / 12%);
   width: 240px;
   height: auto;
-  position: absolute;
-  left: 15%;
-  top: 5%;
+  position: relative;
+  left: 8%;
+  top: 4%;
   bottom: auto;
-  background-color: white;
-  border-radius: 10%;
+  border-radius: 15px 15px 15px 15px;
 }
 li{
   list-style: none;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top:8px;
+  padding-bottom:8px;
   cursor: pointer;
 }
 .auth{
   background-color: #262a30;
+  width: 240px;
   color: white;
-  padding: 20px 0;
+  padding: 15px 0;
   text-align: center;
-  border-radius: 10% 10% 0 0 ;
+  position: absolute;
+  border-radius: 15px 15px 0 0;
 }
 .menu{
-  height: 100%;
+  width: 240px;
+  background-color: white;
+  padding-top: 130px;
+  border-radius: 15px 15px 15px 15px;
 }
 a{
   padding: 5px 20px;
