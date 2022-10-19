@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <Sidebar></Sidebar>
-    <Content></Content>
+    <div style="position:relative;">
+      <Sidebar></Sidebar>
+      <Content></Content>
+    </div>
   </div>
 </template>
 

@@ -32,10 +32,8 @@ export default {
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 6%), 0 1px 5px 0 rgb(0 0 0 / 12%);
   width: 240px;
   height: auto;
-  position: relative;
-  left: 8%;
-  top: 4%;
-  bottom: auto;
+  float: left;
+  margin: 50px 0 0 150px;
   border-radius: 15px 15px 15px 15px;
 }
 li{
