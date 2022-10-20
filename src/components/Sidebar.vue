@@ -3,8 +3,8 @@
     <div>
       <div>
         <div class="auth">
-          <div class="name"><span>Rex</span></div>
-          <div class="name"><span>知行合一</span></div>
+          <div class="name">Rex</div>
+          <div class="name">知行合一</div>
         </div>
         <div class="menu"><ul id="menu">
           <li><a href="">首页</a></li>
@@ -32,9 +32,8 @@ export default {
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 6%), 0 1px 5px 0 rgb(0 0 0 / 12%);
   width: 240px;
   height: auto;
-  float: left;
-  margin: 50px 0 0 150px;
   border-radius: 15px 15px 15px 15px;
+  margin-top: 35px;
 }
 li{
   list-style: none;
@@ -45,8 +44,8 @@ li{
 .auth{
   background-color: #262a30;
   width: 240px;
+  height: 100px;
   color: white;
-  padding: 15px 0;
   text-align: center;
   position: absolute;
   border-radius: 15px 15px 0 0;
@@ -64,6 +63,7 @@ a{
   color: #555;
 }
 .name{
-  margin-top: 17px;
+  padding-top:15px ;
+  margin-top: 5px;
 }
 </style>

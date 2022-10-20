@@ -22,14 +22,5 @@ export default {
 </script>
 
 <style scoped>
-  .content{
-    /*background-color: white;*/
-    width: calc(100% - 570px);
-    height: 100%;
-    float: right;
-    margin: 50px 130px 0 0 ;
-  }
-  .article{
-    margin-top: 10px;
-  }
+
 </style>
