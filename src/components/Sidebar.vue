@@ -26,20 +26,32 @@
                 @close="handleClose"
                 active-text-color="#555555">
                 <el-menu-item index="1">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">导航一</span>
+                  <i class="el-icon-s-home"></i>
+                  <span slot="title">首页</span>
                 </el-menu-item>
                 <el-menu-item index="2">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">导航二</span>
+                  <i class="el-icon-s-flag"></i>
+                  <span slot="title">标签</span>
                 </el-menu-item>
                 <el-menu-item index="3" >
-                  <i class="el-icon-document"></i>
-                  <span slot="title">导航三</span>
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">分类</span>
                 </el-menu-item>
                 <el-menu-item index="4">
-                  <i class="el-icon-setting"></i>
-                  <span slot="title">导航四</span>
+                  <i class="el-icon-s-promotion"></i>
+                  <span slot="title">友链</span>
+                </el-menu-item>
+                <el-menu-item index="5">
+                  <i class="el-icon-user"></i>
+                  <span slot="title">关于</span>
+                </el-menu-item>
+                <el-menu-item index="6">
+                  <i class="el-icon-search"></i>
+                  <span slot="title">搜索</span>
+                </el-menu-item>
+                <el-menu-item index="7">
+                  <i class="el-icon-s-management"></i>
+                  <span slot="title">归档</span>
                 </el-menu-item>
               </el-menu>
             </el-col>
@@ -86,11 +98,24 @@ export default {
   width: 240px;
   background-color: white;
   padding-top: 130px;
+  padding-bottom: 10px;
   border-radius: 15px 15px 15px 15px;
 }
 
 .name{
   padding-top:15px ;
   margin-top: 5px;
+}
+el-menu-item:hover{
+  color: #42b983;
+}
+.el-menu-item:focus,.el-menu-item:hover{
+  background-color: hsl(0, 0%, 97%);
+}
+.el-menu-item {
+  height: 40px;
+  line-height:40px;
+  padding:0 150px;
+
 }
 </style>
