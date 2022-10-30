@@ -7,16 +7,6 @@
           <div class="name">知行合一</div>
         </div>
         <div class="menu">
-<!--          <ul id="menu">-->
-<!--          <li><a href="">首页</a></li>-->
-<!--          <li><a href="">标签</a></li>-->
-<!--          <li><a href="">分类</a></li>-->
-<!--          <li><a href="">归档</a></li>-->
-<!--          <li><a href="">友链</a></li>-->
-<!--          <li><a href="">关于</a></li>-->
-<!--          <li><a href="">搜索</a></li>-->
-<!--          <li></li>-->
-<!--        </ul>-->
           <el-row class="tac">
             <el-col :span="12" style="width: 100%">
               <el-menu
@@ -109,7 +99,7 @@ export default {
 el-menu-item:hover{
   color: #42b983;
 }
-.el-menu-item:focus,.el-menu-item:hover{
+.el-menu-item:focus,.el-menu-item:hover,.el-menu-item.is-active{
   background-color: hsl(0, 0%, 97%);
 }
 .el-menu-item {
@@ -117,5 +107,8 @@ el-menu-item:hover{
   line-height:40px;
   padding:0 150px;
 
+}
+.el-menu{
+  border-right: none;
 }
 </style>

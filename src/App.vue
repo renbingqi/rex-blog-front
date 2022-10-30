@@ -25,7 +25,7 @@
         </el-aside>
         <el-container>
           <el-main>
-            <Content></Content>
+            <router-view></router-view>
           </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
@@ -37,10 +37,9 @@
 // 事件的定义
 // 如果使用触摸屏，当滚动时，将会阻止事件发生
 import Sidebar from './components/Sidebar'
-import Content from './components/Content'
 export default {
   name: 'App',
-  components: { Sidebar, Content }
+  components: { Sidebar }
 }
 
 </script>
@@ -87,5 +86,8 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+.el-main {
+  line-height: 50px;
 }
 </style>
