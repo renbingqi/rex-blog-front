@@ -1,69 +1,60 @@
 <template>
-  <div>
-    <div class="article" v-for="item in article_list" :key="item.id">
-      <div class="articleName">
-        <el-link href="https://element.eleme.io" target="_blank">{{ item.name }}</el-link>
-      </div>
-      <div>
-        <span class="el-icon-edit-outline"></span>
-        <span>发表于</span>
-        <span style="border-bottom: 1px dashed black">{{ item.datetime }}</span>
-        <span>|</span>
-        <span class="el-icon-folder-opened"></span>
-        <span>分类于</span>
-        <span style="border-bottom: 1px solid black"><a href="">{{ item.classes }}</a></span>
-        <span>|</span>
-        <span class="el-icon-view"></span>
-        <span>热度</span>
-        <span>{{ item.heat }}℃</span>
-      </div>
-      <div>
-        <p>{{ item.content }}</p>
-        <div>
-          <el-row>
-            <el-button>阅读全文</el-button>
-          </el-row>
-        </div>
-      </div>
+  <div class="article">
+    <div class="articleName" style="padding-top: 20px">
+      <el-link>{{ this.title }}</el-link>
     </div>
-    <div class="paginations" >
-      <div class="paginations-2">
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="100"
-          style="padding-top: 10px">
-        </el-pagination>
-      </div>
+    <div>
+      <span class="el-icon-edit-outline"></span>
+      <span>发表于</span>
+      <span style="border-bottom: 1px dashed black">{{ this.datetime }}</span>
+      <span>|</span>
+      <span class="el-icon-folder-opened"></span>
+      <span>分类于</span>
+      <span style="border-bottom: 1px solid black"><a href="">{{ this.classes }}</a></span>
+      <span>|</span>
+      <span class="el-icon-view"></span>
+      <span>热度</span>
+      <span>{{ this.heat }}℃</span>
     </div>
+    <div v-html="this.body" class="markdown-body"></div>
   </div>
-
 </template>
 <script>
 export default {
   name: 'Article',
   data () {
     return {
-      article_list: [{
-        id: 1,
-        name: '第一篇博客',
-        datetime: '2022年10月22日',
-        classes: 'Docker',
-        heat: '39',
-        content: '没有什么好数据可以说的'
-      }, { id: 1, name: '第二篇博客', datetime: '2022年10月22日', classes: 'Docker', heat: '39', content: '没有什么好数据可以说的' }, { id: 1, name: '第一篇博客', datetime: '2022年10月22日', classes: 'Docker', heat: '39', content: '没有什么好数据可以说的' }, { id: 1, name: '第一篇博客', datetime: '2022年10月22日', classes: 'Docker', heat: '39', content: '没有什么好数据可以说的' }, { id: 1, name: '第一篇博客', datetime: '2022年10月22日', classes: 'Docker', heat: '39', content: '没有什么好数据可以说的' }, { id: 1, name: '第一篇博客', datetime: '2022年10月22日', classes: 'Docker', heat: '39', content: '没有什么好数据可以说的' }]
-
+      body: '',
+      title: '',
+      heat: '',
+      datetime: '',
+      classes: ''
+    }
+  },
+  created () {
+    for (var item in this.$store.state.articleInfo) {
+      if (this.$store.state.articleInfo[item].id === Number(this.$route.fullPath.split('=')[1])) {
+        this.body = this.$store.state.articleInfo[item].content
+        this.title = this.$store.state.articleInfo[item].name
+        this.heat = this.$store.state.articleInfo[item].heat
+        this.datetime = this.$store.state.articleInfo[item].datetime
+        this.classes = this.$store.state.articleInfo[item].classes
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.article,.paginations {
+.article, .paginations {
   margin-top: 10px;
   background-color: white;
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 6%), 0 1px 5px 0 rgb(0 0 0 / 12%);
   border-radius: 15px;
+}
+
+#main {
+  margin-top: 10px;
 }
 
 .content {
@@ -89,7 +80,30 @@ span {
   opacity: 0.7;
   /*padding-left: 5px;*/
 }
-.el-pager{
+
+.el-icon-edit-outline, .el-icon-folder-opened, .el-icon-view {
+  color: #67C23A;
+}
+
+.el-pager {
   padding-top: 10px;
+}
+
+.markdown-body {
+  font-size: 15px;
+  text-align: left;
+  padding: 30px 0 30px 50px;
+  opacity: 0.7
+}
+
+.button-border {
+  border: 2px solid black;
+  border-radius: 10px;
+  opacity: 0.9;
+}
+
+.button-border:hover {
+  color: white;
+  background-color: black;
 }
 </style>

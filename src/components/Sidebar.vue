@@ -12,34 +12,32 @@
               <el-menu
                 default-active="1"
                 class="el-menu-vertical-demo"
-                @open="handleOpen"
-                @close="handleClose"
                 active-text-color="#555555">
-                <el-menu-item index="1">
+                <el-menu-item index="1" @click="home()">
                   <i class="el-icon-s-home"></i>
-                  <span slot="title">首页</span>
+                  <span slot="title" >首页</span>
                 </el-menu-item>
-                <el-menu-item index="2">
+                <el-menu-item index="2" @click="tag()">
                   <i class="el-icon-s-flag"></i>
                   <span slot="title">标签</span>
                 </el-menu-item>
-                <el-menu-item index="3" >
+                <el-menu-item index="3" @click="classification()">
                   <i class="el-icon-menu"></i>
                   <span slot="title">分类</span>
                 </el-menu-item>
-                <el-menu-item index="4">
+                <el-menu-item index="4" @click="blogroll()">
                   <i class="el-icon-s-promotion"></i>
                   <span slot="title">友链</span>
                 </el-menu-item>
-                <el-menu-item index="5">
+                <el-menu-item index="5" @click="about()">
                   <i class="el-icon-user"></i>
                   <span slot="title">关于</span>
                 </el-menu-item>
-                <el-menu-item index="6">
+                <el-menu-item index="6" @click="search()">
                   <i class="el-icon-search"></i>
                   <span slot="title">搜索</span>
                 </el-menu-item>
-                <el-menu-item index="7">
+                <el-menu-item index="7" @click="archive()">
                   <i class="el-icon-s-management"></i>
                   <span slot="title">归档</span>
                 </el-menu-item>
@@ -57,11 +55,26 @@
 export default {
   name: 'Sidebar',
   methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
+    home (index) {
+      this.$router.push('/')
     },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+    tag () {
+      this.$router.push('/tag')
+    },
+    classification () {
+      this.$router.push('/classification')
+    },
+    blogroll () {
+      this.$router.push('/blogroll')
+    },
+    about () {
+      this.$router.push('/about')
+    },
+    search () {
+      this.$router.push('/search')
+    },
+    archive () {
+      this.$router.push('/archive')
     }
   }
 }

@@ -24,7 +24,7 @@
           <Sidebar></Sidebar>
         </el-aside>
         <el-container>
-          <el-main>
+          <el-main id="view">
             <router-view></router-view>
           </el-main>
           <el-footer>Footer</el-footer>
