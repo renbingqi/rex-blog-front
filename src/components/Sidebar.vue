@@ -17,27 +17,27 @@
                   <i class="el-icon-s-home"></i>
                   <span slot="title" >首页</span>
                 </el-menu-item>
-                <el-menu-item index="2" @click="tag()">
-                  <i class="el-icon-s-flag"></i>
-                  <span slot="title">标签</span>
-                </el-menu-item>
+<!--                <el-menu-item index="2" @click="tag()">-->
+<!--                  <i class="el-icon-s-flag"></i>-->
+<!--                  <span slot="title">标签</span>-->
+<!--                </el-menu-item>-->
                 <el-menu-item index="3" @click="classification()">
                   <i class="el-icon-menu"></i>
                   <span slot="title">分类</span>
                 </el-menu-item>
-                <el-menu-item index="4" @click="blogroll()">
+                <el-menu-item index="4" @click="blogroll()" disabled>
                   <i class="el-icon-s-promotion"></i>
                   <span slot="title">友链</span>
                 </el-menu-item>
-                <el-menu-item index="5" @click="about()">
+                <el-menu-item index="5" @click="about()" disabled>
                   <i class="el-icon-user"></i>
                   <span slot="title">关于</span>
                 </el-menu-item>
-                <el-menu-item index="6" @click="search()">
+                <el-menu-item index="6" @click="search()" disabled>
                   <i class="el-icon-search"></i>
                   <span slot="title">搜索</span>
                 </el-menu-item>
-                <el-menu-item index="7" @click="archive()">
+                <el-menu-item index="7" @click="archive()" disabled>
                   <i class="el-icon-s-management"></i>
                   <span slot="title">归档</span>
                 </el-menu-item>

@@ -15,7 +15,7 @@
       </el-option>
     </el-select>
     <el-button type="danger" round style="width: 14%" @click="onSubmit">发布文章</el-button>
-    <mavon-editor class="mavonEditor" v-model="content"/>
+    <mavon-editor ref=md @imgAdd="$imgAdd" class="mavonEditor" v-model="content"/>
   </div>
 </template>
 <script>
@@ -31,7 +31,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://127.0.0.1:8080/classifications').then(res => {
+    axios.get('/classifications').then(res => {
       var classList = []
       for (var i in res.data.data) {
         var value = res.data.data[i].id
@@ -49,12 +49,26 @@ export default {
       data.append('title', this.title)
       data.append('class', this.classification)
       data.append('body', this.content)
-      axios.post('http://127.0.0.1:8080/articles/create', data).then(res => {
+      axios.post('/articles/create', data).then(res => {
         if (res.status === 200 && res.statusText === 'OK') {
           this.$router.push('/')
         }
       }, err => {
         console.log(err)
+      })
+    },
+    $imgAdd (pos, $file) {
+      // 第一步.将图片上传到服务器.
+      var formdata = new FormData()
+      formdata.append('img', $file)
+      axios({
+        url: 'articles/upload_picture',
+        method: 'post',
+        data: formdata,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }).then((res) => {
+        console.log(res.data.data)
+        this.$refs.md.$img2Url(pos, res.data.data)
       })
     }
   }

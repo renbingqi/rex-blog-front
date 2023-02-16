@@ -35,6 +35,7 @@ export default {
     for (var item in this.$store.state.articleInfo) {
       if (this.$store.state.articleInfo[item].id === Number(this.$route.fullPath.split('=')[1])) {
         this.body = this.$store.state.articleInfo[item].content
+        console.log(this.body)
         this.title = this.$store.state.articleInfo[item].name
         this.heat = this.$store.state.articleInfo[item].heat
         this.datetime = this.$store.state.articleInfo[item].datetime

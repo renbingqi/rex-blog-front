@@ -18,78 +18,57 @@
         <span>{{ item.heat }}℃</span>
       </div>
       <div v-html="item.abstract" class="markdown-body"></div>
-      <div>
+      <div >
         <el-row style="padding-bottom: 20px">
           <el-button class="button-border" @click="showArticel(item.id)">阅读全文 »</el-button>
         </el-row>
       </div>
     </div>
-    <Pagination v-if='show'></Pagination>
+    <div class="paginations">
+      <div class="paginations-2">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="100"
+          style="padding-top: 10px">
+        </el-pagination>
+      </div>
+    </div>
   </div>
 
 </template>
 <script>
 import axios from 'axios'
-import { marked } from 'marked'
 import 'github-markdown-css'
-import Pagination from '../components/pagination'
+
 export default {
   name: 'ArticleList',
   data () {
     return {
-      article_list: [],
-      show: false
+      article_list: []
+
     }
   },
   created () {
-    axios.get('/articles').then(res => {
-      // console.log(res.data.data)
-      var articlesList = []
-      var articleJson = res.data.data
-      for (var i in articleJson) {
-        var articleObj = {}
-        var id = articleJson[i].id
-        var name = articleJson[i].title
-        var datetime = articleJson[i].created
-        var classes = articleJson[i].classifications
-        var heat = articleJson[i].hot
-        var content = marked(articleJson[i].body)
-        var abstract = marked(articleJson[i].body.split('\n')[0])
-        articleObj.id = id
-        articleObj.name = name
-        articleObj.datetime = datetime
-        articleObj.classes = classes
-        articleObj.heat = heat
-        articleObj.content = content
-        articleObj.abstract = abstract
-        articlesList.push(articleObj)
+    var classes = this.$route.path.split('/')[2]
+    console.log(this.$store.state.articleInfo)
+    this.$store.state.articleInfo.forEach(item => {
+      if (item.classes === classes) {
+        this.article_list.push(item)
       }
-      this.article_list = articlesList
-      if (this.article_list.length > 10) {
-        this.show = true
-      }
-      this.$store.commit('saveArticleInfo', this.article_list)
-    }).catch(err => {
-      console.log(err)
     })
   },
   methods: {
     showArticel (id) {
       axios.get('/articles/update_hot/' + id).then(res => {
         if (res.data.code === 200) {
-          this.$store.state.articleInfo.forEach(item => {
-            if (item.id === id) {
-              item.heat += 1
-            }
-          })
           this.$router.push('/article/id=' + id)
         }
       }, err => {
         console.log(err)
       })
     }
-  },
-  components: { Pagination }
+  }
 }
 </script>
 
@@ -141,16 +120,14 @@ span {
   font-size: 15px;
   text-align: left;
   padding: 30px 0 30px 50px;
-  opacity: 0.7
+  opacity:0.7
 }
-
-.button-border {
+.button-border{
   border: 2px solid black;
   border-radius: 10px;
   opacity: 0.9;
 }
-
-.button-border:hover {
+.button-border:hover{
   color: white;
   background-color: black;
 }

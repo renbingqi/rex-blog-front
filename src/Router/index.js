@@ -4,27 +4,59 @@ import Articles from '../Pages/ArticleList'
 import Tag from '../Pages/Tag'
 import WriteBlog from '../Pages/WriteBlog'
 import Article from '../Pages/Article'
+import Classification from '../Pages/classification'
+import ArticleListClasses from '../Pages/ArticleListClasses'
+
 export default new VueRouter({
   routes: [
     {
       path: '/',
-      component: Articles
+      component: Articles,
+      meta: {
+        title: 'ArticlesList'
+      }
     },
     {
       path: '/tags',
-      component: Tag
+      component: Tag,
+      meta: {
+        title: 'Tag'
+      }
     },
     {
       path: '/write_blog',
-      component: WriteBlog
+      component: WriteBlog,
+      meta: {
+        title: 'WriteBlog'
+      }
     },
     {
       path: '/article',
       component: Article,
+      meta: {
+        title: 'Article'
+      },
       children: [{
         path: 'id=:id',
-        component: Article
+        component: Article,
+        meta: {
+          title: 'Article'
+        }
       }]
+    },
+    {
+      path: '/classification',
+      component: Classification,
+      meta: {
+        title: 'Classification'
+      }
+    },
+    {
+      path: '/classification/:classes',
+      component: ArticleListClasses,
+      meta: {
+        title: 'ArticleListClasses'
+      }
     }
   ]
 })
