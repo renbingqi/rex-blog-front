@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="article" v-for="item in article_list" :key="item.id">
+A    <div class="article" v-for="item in show_article_list" :key="item.id">
       <div class="articleName" style="padding-top: 20px">
         <el-link @click="showArticel(item.id) "> {{ item.name }}</el-link>
       </div>
@@ -24,7 +24,7 @@
         </el-row>
       </div>
     </div>
-    <Pagination v-if='show'></Pagination>
+    <Pagination v-if='show' @changePagination="changePagination"></Pagination>
   </div>
 
 </template>
@@ -38,7 +38,9 @@ export default {
   data () {
     return {
       article_list: [],
-      show: false
+      show_article_list: [],
+      show: false,
+      numberPerPage: 5
     }
   },
   created () {
@@ -65,6 +67,7 @@ export default {
         articlesList.push(articleObj)
       }
       this.article_list = articlesList
+      this.show_article_list = this.article_list.slice(0, this.numberPerPage)
       if (this.article_list.length > 10) {
         this.show = true
       }
@@ -87,6 +90,9 @@ export default {
       }, err => {
         console.log(err)
       })
+    },
+    changePagination (val) {
+      this.show_article_list = this.article_list.slice((val - 1) * this.numberPerPage, val * this.numberPerPage)
     }
   },
   components: { Pagination }

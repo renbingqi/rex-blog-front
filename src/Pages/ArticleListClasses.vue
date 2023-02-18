@@ -24,23 +24,14 @@
         </el-row>
       </div>
     </div>
-    <div class="paginations">
-      <div class="paginations-2">
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="100"
-          style="padding-top: 10px">
-        </el-pagination>
-      </div>
-    </div>
+    <Pagination v-if='show'></Pagination>
   </div>
 
 </template>
 <script>
 import axios from 'axios'
 import 'github-markdown-css'
-
+import Pagination from '../components/pagination'
 export default {
   name: 'ArticleList',
   data () {
@@ -68,7 +59,10 @@ export default {
         console.log(err)
       })
     }
-  }
+  },
+  components: [
+    Pagination
+  ]
 }
 </script>
 

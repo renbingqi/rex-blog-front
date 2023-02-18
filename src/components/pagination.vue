@@ -1,9 +1,13 @@
 <template>
   <div class="paginations">
     <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
       background
       layout="prev, pager, next"
-      :total="11"
+      :page-size= pageSize
+      :total= total
+      hide-on-single-page
       style="padding-top: 10px">
     </el-pagination>
   </div>
@@ -11,7 +15,24 @@
 
 <script>
 export default {
-  name: 'pagination'
+  name: 'pagination',
+  data () {
+    return {
+      total: 0,
+      pageSize: 5
+    }
+  },
+  created () {
+    this.total = this.$store.state.articleInfo.length
+  },
+  methods: {
+    handleSizeChange (val) {
+      this.$emit('changePagination', val)
+    },
+    handleCurrentChange (val) {
+      this.$emit('changePagination', val)
+    }
+  }
 }
 </script>
 
