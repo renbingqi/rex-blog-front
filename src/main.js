@@ -16,6 +16,7 @@ Vue.use(VueRouter)
 Vue.use(ElementUI)
 Vue.use(mavonEditor)
 axios.defaults.baseURL = 'http://127.0.0.1:8080/'
+// axios.defaults.baseURL = 'http://1.15.108.71:8000/'
 new Vue({
   render: h => h(App),
   router,

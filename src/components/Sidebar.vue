@@ -54,6 +54,11 @@
 <script>
 export default {
   name: 'Sidebar',
+  data () {
+    return {
+      title: 'bb'
+    }
+  },
   methods: {
     home (index) {
       this.$router.push('/')

@@ -11,11 +11,15 @@ const actions = {}
 const mutations = {
   saveArticleInfo (state, value) {
     state.articleInfo = value
+  },
+  saveTempArticleInfo (state, value) {
+    state.tempArticleInfo = value
   }
 }
 // 准备state——用于存储数据
 const state = {
-  articleInfo: ''
+  articleInfo: '',
+  tempArticleInfo: ''
 }
 // 创建并暴露store
 export default new Vuex.Store({

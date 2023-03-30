@@ -6,6 +6,7 @@ import WriteBlog from '../Pages/WriteBlog'
 import Article from '../Pages/Article'
 import Classification from '../Pages/classification'
 import ArticleListClasses from '../Pages/ArticleListClasses'
+import TempArticleList from '../Pages/TempArticleList'
 
 export default new VueRouter({
   routes: [
@@ -14,6 +15,13 @@ export default new VueRouter({
       component: Articles,
       meta: {
         title: 'ArticlesList'
+      }
+    },
+    {
+      path: '/temp_articles',
+      component: TempArticleList,
+      meta: {
+        title: 'TempArticleList'
       }
     },
     {

@@ -6,7 +6,7 @@
       </div>
       <div>
         <span class="el-icon-edit-outline"></span>
-        <span>发表于</span>
+        <span>创建于</span>
         <span style="border-bottom: 1px dashed black">{{ item.datetime }}</span>
         <span>|</span>
         <span class="el-icon-folder-opened"></span>
@@ -20,7 +20,8 @@
       <div v-html="item.abstract" class="markdown-body"></div>
       <div>
         <el-row style="padding-bottom: 20px">
-          <el-button class="button-border" @click="showArticel(item.id)">阅读全文 »</el-button>
+          <el-button class="button-border" @click="writeArticel(item.id)">编辑 »</el-button>
+          <el-button class="button-border" @click="deleteArticel(item.id)">删除 »</el-button>
         </el-row>
       </div>
     </div>
@@ -33,76 +34,60 @@ import axios from 'axios'
 import { marked } from 'marked'
 import 'github-markdown-css'
 import Pagination from '../components/pagination'
+
 export default {
-  name: 'ArticleList',
+  name: 'TempArticleList',
   data () {
     return {
       article_list: [],
       show_article_list: [],
       show: false,
-      numberPerPage: 5
+      numberPerPage: 20
     }
   },
   created () {
-    if (this.$store.state.articleInfo.length === 0) {
-      axios.get('/articles', {
-        params: {
-          temp: 0
-        }
-      }).then(res => {
-        // console.log(res.data.data)
-        var articlesList = []
-        var articleJson = res.data.data
-        for (var i in articleJson) {
-          var articleObj = {}
-          var id = articleJson[i].id
-          var name = articleJson[i].title
-          var datetime = articleJson[i].created
-          var classes = articleJson[i].classifications
-          var heat = articleJson[i].hot
-          var content = marked(articleJson[i].body)
-          var abstract = marked(articleJson[i].body.split('\n')[0])
-          articleObj.id = id
-          articleObj.name = name
-          articleObj.datetime = datetime.replace(/T/g, ' ')
-          articleObj.classes = classes
-          articleObj.heat = heat
-          articleObj.content = content
-          articleObj.abstract = abstract
-          articlesList.push(articleObj)
-        }
-        this.article_list = articlesList
-        this.show_article_list = this.article_list.slice(0, this.numberPerPage)
-        if (this.article_list.length > this.numberPerPage) {
-          this.show = true
-        }
-        this.$store.commit('saveArticleInfo', this.article_list)
-      }).catch(err => {
-        console.log(err)
-      })
-    } else {
-      this.article_list = this.$store.state.articleInfo
+    axios.get('/articles', {
+      params: {
+        temp: 1
+      }
+    }).then(res => {
+      // console.log(res.data.data)
+      var articlesList = []
+      var articleJson = res.data.data
+      for (var i in articleJson) {
+        var articleObj = {}
+        var id = articleJson[i].id
+        var name = articleJson[i].title
+        var datetime = articleJson[i].created
+        var classes = articleJson[i].classifications
+        var heat = articleJson[i].hot
+        var content = marked(articleJson[i].body)
+        var abstract = marked(articleJson[i].body.split('\n')[0])
+        articleObj.id = id
+        articleObj.name = name
+        articleObj.datetime = datetime
+        articleObj.classes = classes
+        articleObj.heat = heat
+        articleObj.content = content
+        articleObj.ori_content = articleJson[i].body
+        articleObj.abstract = abstract
+        articlesList.push(articleObj)
+      }
+      this.article_list = articlesList
       this.show_article_list = this.article_list.slice(0, this.numberPerPage)
-      if (this.article_list.length > this.numberPerPage) {
+      if (this.article_list.length > 20) {
         this.show = true
       }
-    }
+      this.$store.commit('saveTempArticleInfo', this.article_list)
+    }).catch(err => {
+      console.log(err)
+    })
   },
   methods: {
-    showArticel (id) {
-      axios.get('/articles/update_hot/' + id).then(res => {
-        if (res.data.code === 200) {
-          this.$store.state.articleInfo.forEach(item => {
-            if (item.id === id) {
-              item.heat += 1
-            }
-          })
-          this.$router.push('/article/id=' + id)
-        }
-      }, err => {
-        console.log(err)
-      })
+    writeArticel (id) {
+      this.$router.push('/write_blog?id=' + id)
     },
+    deleteArticel (id) {},
     changePagination (val) {
       this.show_article_list = this.article_list.slice((val - 1) * this.numberPerPage, val * this.numberPerPage)
     }
